@@ -125,43 +125,61 @@ class GradescopeClient:
 
         # Find assignment table rows
         for row in soup.find_all("tr", role="row"):
-            cells = row.find_all(["th", "td"])
-            if len(cells) < 3:
+            # Skip header rows (they have columnheader role)
+            if row.find(role="columnheader"):
                 continue
 
-            # First cell usually contains assignment name and link
-            name_cell = cells[0]
-            name_link = name_cell.find("a")
+            # Get assignment name and ID
+            name = None
+            href = None
+            aid = None
 
-            if not name_link:
+            # Method 1: Link (for submitted/viewable assignments)
+            name_link = row.find("a", href=re.compile(r"/assignments/\d+"))
+            if name_link:
+                name = name_link.get_text(strip=True)
+                href = name_link.get("href", "")
+                aid_match = re.search(r"/assignments/(\d+)", href)
+                aid = aid_match.group(1) if aid_match else None
+
+            # Method 2: Button with data-assignment-title (for unsubmitted assignments)
+            if not name:
+                submit_button = row.find("button", attrs={"data-assignment-title": True})
+                if submit_button:
+                    name = submit_button.get("data-assignment-title")
+                    aid = submit_button.get("data-assignment-id")
+
+            if not name:
                 continue
 
-            name = name_link.get_text(strip=True)
-            href = name_link.get("href", "")
-
-            # Extract assignment ID from URL
-            aid_match = re.search(r"/assignments/(\d+)", href)
-            aid = aid_match.group(1) if aid_match else None
-
-            # Try to find due date (usually in later cells)
+            # Get DUE date - use the <time> element with class submissionTimeChart--dueDate
             due_date = None
-            for cell in cells[1:]:
-                cell_text = cell.get_text(strip=True)
-                # Look for date patterns
-                if re.search(r"\d{1,2}:\d{2}", cell_text) or "due" in cell_text.lower():
-                    due_date = cell_text
-                    break
 
-            # Also check for time element
-            time_elem = row.find("time")
-            if time_elem:
-                due_date = time_elem.get("datetime") or time_elem.get_text(strip=True)
+            # Method 1: Best - use datetime attribute from time element
+            due_time_elem = row.find("time", class_="submissionTimeChart--dueDate")
+            if due_time_elem:
+                due_date = due_time_elem.get("datetime")
+
+            # Method 2: Hidden column with due date
+            if not due_date:
+                hidden_cells = row.find_all("td", class_="hidden-column")
+                if len(hidden_cells) >= 2:
+                    # Second hidden column is typically the due date
+                    due_date = hidden_cells[1].get_text(strip=True)
+
+            # Method 3: Look for time element with "Due at" in aria-label
+            if not due_date:
+                for time_elem in row.find_all("time"):
+                    aria_label = time_elem.get("aria-label", "")
+                    if "Due at" in aria_label:
+                        due_date = time_elem.get("datetime") or time_elem.get_text(strip=True)
+                        break
 
             assignments.append({
                 "name": name,
                 "id": aid,
                 "due_date": due_date,
-                "url": f"{GRADESCOPE_BASE_URL}{href}" if href else None
+                "url": f"{GRADESCOPE_BASE_URL}{href}" if href else f"{GRADESCOPE_BASE_URL}/courses/{course_id}/assignments/{aid}" if aid else None
             })
 
         return assignments
@@ -275,37 +293,79 @@ class GoogleCalendarClient:
         if not date_str:
             return None
 
-        # Common date formats from Gradescope
-        formats = [
-            "%Y-%m-%dT%H:%M:%S%z",  # ISO format with timezone
+        # Clean up the string
+        date_str = date_str.strip()
+
+        # Get current year for dates without year
+        current_year = datetime.now().year
+
+        # Common date formats from Gradescope (with year)
+        formats_with_year = [
+            "%Y-%m-%d %H:%M:%S %z",  # "2026-01-22 12:30:00 -0800" (from datetime attr)
+            "%Y-%m-%dT%H:%M:%S%z",   # ISO format with timezone
             "%Y-%m-%dT%H:%M:%S",     # ISO format without timezone
             "%b %d, %Y %I:%M %p",    # "Jan 15, 2026 11:59 PM"
             "%b %d, %Y at %I:%M %p", # "Jan 15, 2026 at 11:59 PM"
             "%B %d, %Y %I:%M %p",    # "January 15, 2026 11:59 PM"
+            "%B %d, %Y at %I:%M %p", # "January 15, 2026 at 11:59 PM"
             "%m/%d/%Y %I:%M %p",     # "01/15/2026 11:59 PM"
-            "%Y-%m-%d %H:%M:%S %z",  # "2026-01-15 23:59:00 -0800"
         ]
 
-        for fmt in formats:
+        # Try formats with year first
+        for fmt in formats_with_year:
             try:
-                return datetime.strptime(date_str.strip(), fmt)
+                return datetime.strptime(date_str, fmt)
             except ValueError:
                 continue
 
-        # Try to extract datetime with regex
-        patterns = [
-            r"(\w+ \d+, \d{4} \d+:\d+ [AP]M)",
-            r"(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})",
+        # Formats WITHOUT year (need to add current year)
+        formats_without_year = [
+            "%B %d at %I:%M%p",      # "January 24 at 4:00PM"
+            "%B %d at %I:%M %p",     # "January 24 at 4:00 PM"
+            "%b %d at %I:%M%p",      # "Jan 24 at 4:00PM"
+            "%b %d at %I:%M %p",     # "Jan 24 at 4:00 PM"
+            "%B %d %I:%M%p",         # "January 24 4:00PM"
+            "%B %d %I:%M %p",        # "January 24 4:00 PM"
         ]
 
-        for pattern in patterns:
-            match = re.search(pattern, date_str)
-            if match:
-                for fmt in formats:
-                    try:
-                        return datetime.strptime(match.group(1), fmt)
-                    except ValueError:
-                        continue
+        for fmt in formats_without_year:
+            try:
+                parsed = datetime.strptime(date_str, fmt)
+                # Add current year
+                return parsed.replace(year=current_year)
+            except ValueError:
+                continue
+
+        # Try regex extraction for "Month DD at HH:MMAM/PM" pattern
+        match = re.search(
+            r"(\w+)\s+(\d+)\s+at\s+(\d+):(\d+)\s*([AP]M)",
+            date_str,
+            re.IGNORECASE
+        )
+        if match:
+            month_str, day, hour, minute, ampm = match.groups()
+            try:
+                # Parse month name
+                month_dt = datetime.strptime(month_str, "%B")
+                month = month_dt.month
+            except ValueError:
+                try:
+                    month_dt = datetime.strptime(month_str, "%b")
+                    month = month_dt.month
+                except ValueError:
+                    return None
+
+            hour = int(hour)
+            minute = int(minute)
+            day = int(day)
+
+            # Convert to 24-hour format
+            if ampm.upper() == "PM" and hour != 12:
+                hour += 12
+            elif ampm.upper() == "AM" and hour == 12:
+                hour = 0
+
+            return datetime(current_year, month, day, hour, minute)
 
         return None
 
