@@ -217,6 +217,17 @@ class GoogleCalendarClient:
 
         return build('calendar', 'v3', credentials=creds)
 
+    def get_calendar_id(self, calendar_name: str) -> Optional[str]:
+        """Find a calendar ID by its name."""
+        try:
+            calendar_list = self.service.calendarList().list().execute()
+            for calendar in calendar_list.get('items', []):
+                if calendar.get('summary') == calendar_name:
+                    return calendar.get('id')
+        except Exception as e:
+            print(f"Warning: Error listing calendars: {e}")
+        return None
+
     def find_event(self, title: str, calendar_id: str = 'primary') -> Optional[dict]:
         """Find an existing event by title."""
         try:
@@ -422,6 +433,15 @@ def main():
         print("Connecting to Google Calendar...")
         gcal_client = GoogleCalendarClient()
 
+        # Get target calendar (Berkeley Calendar or fall back to primary)
+        target_calendar_name = os.environ.get("GOOGLE_CALENDAR_NAME", "Berkeley Calendar")
+        calendar_id = gcal_client.get_calendar_id(target_calendar_name)
+        if calendar_id:
+            print(f"Using calendar: {target_calendar_name}")
+        else:
+            print(f"Calendar '{target_calendar_name}' not found, using primary calendar")
+            calendar_id = 'primary'
+
         # Process each course
         total_created = 0
         total_updated = 0
@@ -446,6 +466,7 @@ def main():
 
                 result = gcal_client.create_or_update_event(
                     title=title,
+                    calendar_id=calendar_id,
                     due_date=assignment['due_date'],
                     description=description
                 )
