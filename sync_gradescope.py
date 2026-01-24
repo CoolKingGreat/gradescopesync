@@ -496,5 +496,61 @@ def main():
         sys.exit(1)
 
 
+def cleanup_old_events():
+    """Delete Gradescope events from the personal calendar (one-time cleanup)."""
+    setup_google_credentials()
+
+    gcal_client = GoogleCalendarClient()
+
+    # Course codes to look for in event titles
+    course_patterns = [
+        "COMPSCI 61B", "CS 70", "LS 22", "MATH 54", "Math 54",
+        "ASTRON C10", "CS 198"
+    ]
+
+    print("Searching for Gradescope events in primary calendar...")
+
+    # Get all events from primary calendar
+    deleted_count = 0
+    try:
+        page_token = None
+        while True:
+            events_result = gcal_client.service.events().list(
+                calendarId='primary',
+                maxResults=100,
+                singleEvents=True,
+                pageToken=page_token
+            ).execute()
+
+            events = events_result.get('items', [])
+
+            for event in events:
+                title = event.get('summary', '')
+                # Check if this is a Gradescope event (has course code pattern)
+                for pattern in course_patterns:
+                    if pattern in title and ' - ' in title:
+                        # This looks like a Gradescope event
+                        print(f"  Deleting: {title}")
+                        gcal_client.service.events().delete(
+                            calendarId='primary',
+                            eventId=event['id']
+                        ).execute()
+                        deleted_count += 1
+                        break
+
+            page_token = events_result.get('nextPageToken')
+            if not page_token:
+                break
+
+    except Exception as e:
+        print(f"Error during cleanup: {e}")
+
+    print(f"\nDeleted {deleted_count} Gradescope events from personal calendar.")
+
+
 if __name__ == "__main__":
-    main()
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == "--cleanup":
+        cleanup_old_events()
+    else:
+        main()
