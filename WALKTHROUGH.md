@@ -577,15 +577,115 @@ import base64               # Encoding
 
 ---
 
-## 7. Summary
+---
 
-**Total lines of code**: ~500
-**Time to build**: ~3 hours (with debugging)
-**Cost**: Free (GitHub Actions + Google Calendar API)
+## 7. Making It Shareable: iCal Support
+
+### The Problem with OAuth
+
+The original OAuth approach works great for one person, but sharing is hard:
+- Each user needs to set up Google Cloud Console
+- Each user needs to generate their own OAuth token
+- 30+ minutes of setup per person
+
+### The iCal Solution
+
+iCal is a universal calendar format (`.ics` files). Instead of pushing to Google Calendar, we generate a file that any calendar app can subscribe to.
+
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│   Gradescope    │────▶│  GitHub Actions │────▶│  .ics file      │
+│   (scraping)    │     │  (generates)    │     │  (GitHub Pages) │
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+                                                        │
+                              ┌──────────────────┬──────┴──────┐
+                              ▼                  ▼             ▼
+                        ┌──────────┐      ┌──────────┐  ┌──────────┐
+                        │  Google  │      │  Apple   │  │ Outlook  │
+                        │ Calendar │      │ Calendar │  │          │
+                        └──────────┘      └──────────┘  └──────────┘
+```
+
+### How iCal Works
+
+```python
+from icalendar import Calendar, Event
+
+def create_calendar(assignments):
+    cal = Calendar()
+    cal.add('prodid', '-//Gradescope Calendar Sync//EN')
+    cal.add('version', '2.0')
+
+    for assignment in assignments:
+        event = Event()
+        event.add('summary', f"{assignment['name']} - {assignment['course']}")
+        event.add('dtstart', assignment['due_date'])
+        event.add('dtend', assignment['due_date'])
+
+        # Stable UID enables updates without duplicates
+        uid = f"{assignment['course_id']}-{assignment['assignment_id']}@gradescope-sync"
+        event.add('uid', uid)
+
+        cal.add_component(event)
+
+    return cal.to_ical()
+```
+
+**Key insight**: The UID (Unique Identifier) lets calendar apps know when an event is being updated vs. when it's new. Format: `{course_id}-{assignment_id}@gradescope-sync`
+
+### The Fork Model
+
+Each user forks the repo and runs their own instance:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Original repo (template)                                       │
+└─────────────────────────────────────────────────────────────────┘
+                              │ fork
+        ┌─────────────────────┼─────────────────────┐
+        ▼                     ▼                     ▼
+┌───────────────┐     ┌───────────────┐     ┌───────────────┐
+│ alice/fork    │     │ bob/fork      │     │ carol/fork    │
+│ - her creds   │     │ - his creds   │     │ - her creds   │
+│ - her .ics    │     │ - his .ics    │     │ - her .ics    │
+└───────────────┘     └───────────────┘     └───────────────┘
+        │                     │                     │
+        ▼                     ▼                     ▼
+alice.github.io/...   bob.github.io/...   carol.github.io/...
+```
+
+Benefits:
+- No central server
+- Each user's credentials stay in their own repo
+- Free (GitHub Actions + GitHub Pages)
+- 5-minute setup vs 30+ minutes for OAuth
+
+### Workflow Comparison
+
+| Step | iCal (new) | OAuth (original) |
+|------|------------|------------------|
+| 1 | Fork repo | Fork repo |
+| 2 | Add 2 secrets | Add 2 secrets |
+| 3 | Enable GitHub Pages | Create Google Cloud project |
+| 4 | Done! | Enable Calendar API |
+| 5 | | Create OAuth credentials |
+| 6 | | Run local auth script |
+| 7 | | Encode token as base64 |
+| 8 | | Add 3rd secret |
+
+---
+
+## 8. Summary
+
+**Total lines of code**: ~700
+**Time to build**: ~4 hours (with debugging)
+**Cost**: Free (GitHub Actions + GitHub Pages)
 
 **The core insight**: Most websites can be automated by:
 1. Mimicking browser requests
 2. Parsing the HTML response
 3. Extracting the data you need
+
+**The sharing insight**: Universal formats (like iCal) make it easy for others to use your tool without complex setup.
 
 The trickiest parts are usually authentication and handling edge cases in the HTML structure.

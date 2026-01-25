@@ -2,31 +2,65 @@
 
 ## Project Overview
 
-Automatically syncs Gradescope assignments to Google Calendar (Berkeley Calendar) using GitHub Actions. Runs twice daily at 8 AM and 8 PM Pacific.
+Automatically syncs Gradescope assignments to calendars. Two methods available:
+
+| Method | Workflow | Output | Best For |
+|--------|----------|--------|----------|
+| **iCal** | `generate-ical.yml` | `.ics` file via GitHub Pages | New users (simple setup) |
+| **OAuth** | `sync.yml` | Direct Google Calendar sync | You (advanced features) |
+
+Both run twice daily at 8 AM and 8 PM Pacific.
 
 ## Architecture
 
 ```
-GitHub Actions (runs on schedule)
-    │
-    ├── Logs into Gradescope (email/password)
-    ├── Scrapes assignment data from each course
-    └── Creates/updates events in Google Calendar via API
+                    ┌─────────────────────────────────────┐
+                    │         GitHub Actions              │
+                    │       (runs on schedule)            │
+                    └─────────────────────────────────────┘
+                                    │
+                    ┌───────────────┴───────────────┐
+                    ▼                               ▼
+           ┌───────────────┐               ┌───────────────┐
+           │ generate-ical │               │   sync.yml    │
+           │     .yml      │               │   (OAuth)     │
+           └───────────────┘               └───────────────┘
+                    │                               │
+                    ▼                               ▼
+           ┌───────────────┐               ┌───────────────┐
+           │ docs/         │               │ Google        │
+           │ gradescope.ics│               │ Calendar API  │
+           └───────────────┘               └───────────────┘
+                    │                               │
+                    ▼                               ▼
+           ┌───────────────┐               ┌───────────────┐
+           │ GitHub Pages  │               │ Berkeley      │
+           │ (subscribe)   │               │ Calendar      │
+           └───────────────┘               └───────────────┘
 ```
 
 ## Key Files
 
 | File | Purpose |
 |------|---------|
-| `sync_gradescope.py` | Main script - Gradescope scraper + Google Calendar integration |
-| `.github/workflows/sync.yml` | GitHub Actions workflow (schedule, environment) |
-| `setup_google_auth.py` | One-time script to generate Google OAuth token |
-| `requirements.txt` | Python dependencies |
-| `token.json` | Local Google OAuth token (not in repo) |
-| `credentials.json` | Google Cloud OAuth client credentials (not in repo) |
+| `sync_gradescope.py` | Gradescope scraper + Google Calendar integration |
+| `ical_generator.py` | iCal file generation logic |
+| `generate_ical.py` | Script to generate `.ics` from Gradescope |
+| `.github/workflows/sync.yml` | OAuth workflow (your setup) |
+| `.github/workflows/generate-ical.yml` | iCal workflow (for sharing) |
+| `setup_google_auth.py` | One-time OAuth token generator |
+| `docs/index.html` | Landing page for iCal subscribers |
+| `docs/gradescope.ics` | Generated iCal file (committed by workflow) |
 
-## GitHub Secrets Required
+## GitHub Secrets
 
+### For iCal (minimum - what new users need)
+| Secret | Value |
+|--------|-------|
+| `GRADESCOPE_EMAIL` | Gradescope email |
+| `GRADESCOPE_PASSWORD` | Gradescope direct login password |
+
+### For OAuth (your setup - adds Google sync)
 | Secret | Value |
 |--------|-------|
 | `GRADESCOPE_EMAIL` | aryanvalsa@berkeley.edu |
@@ -47,10 +81,14 @@ cd /Users/aryan/Documents/CodeProjects/gradescope-calendar-sync
 source venv/bin/activate
 pip install -r requirements.txt
 
-# Run sync
-GRADESCOPE_EMAIL="aryanvalsa@berkeley.edu" GRADESCOPE_PASSWORD="yourpassword" python sync_gradescope.py
+# Test iCal generation
+GRADESCOPE_EMAIL="aryanvalsa@berkeley.edu" GRADESCOPE_PASSWORD="xxx" python generate_ical.py
+cat docs/gradescope.ics
 
-# Run cleanup (delete events from personal calendar)
+# Test OAuth sync (your calendar)
+GRADESCOPE_EMAIL="aryanvalsa@berkeley.edu" GRADESCOPE_PASSWORD="xxx" python sync_gradescope.py
+
+# Cleanup old events from personal calendar
 python sync_gradescope.py --cleanup
 ```
 
@@ -61,6 +99,15 @@ python sync_gradescope.py --cleanup
 3. **Get assignments**: For each course, parse the assignments table
    - Assignment names from `<a>` links or `<button data-assignment-title="...">`
    - Due dates from `<time class="submissionTimeChart--dueDate" datetime="...">`
+
+## iCal Generation
+
+The iCal generator creates events with stable UIDs:
+```
+{course_id}-{assignment_id}@gradescope-sync
+```
+
+This allows calendar apps to update existing events when due dates change, rather than creating duplicates.
 
 ## Common Issues & Fixes
 
@@ -76,9 +123,13 @@ python sync_gradescope.py --cleanup
 - Some assignments have buttons (unsubmitted) instead of links
 - Fix: Also check `<button data-assignment-title="...">` for assignment names
 
-### Google token expired
+### Google token expired (OAuth only)
 - Re-run `setup_google_auth.py` locally
 - Update `GOOGLE_TOKEN` secret with new base64-encoded token
+
+### iCal not updating in Google Calendar
+- Google Calendar caches aggressively (can take 12-24 hours)
+- For immediate updates, remove and re-add the subscription
 
 ## Gradescope Page Structure (as of Jan 2026)
 
@@ -98,26 +149,18 @@ python sync_gradescope.py --cleanup
 </tr>
 ```
 
-## Google Calendar Setup
-
-1. Google Cloud Console: https://console.cloud.google.com/
-2. Project: "Gradescope Calendar Sync"
-3. API: Google Calendar API (enabled)
-4. OAuth consent screen: Internal (berkeley.edu)
-5. Credentials: OAuth 2.0 Desktop App
-
 ## Environment Variables
 
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `GRADESCOPE_EMAIL` | (required) | Gradescope login email |
 | `GRADESCOPE_PASSWORD` | (required) | Gradescope direct password |
-| `GOOGLE_TOKEN` | (optional) | Base64 token for GitHub Actions |
-| `GOOGLE_CALENDAR_NAME` | "Berkeley Calendar" | Target calendar name |
+| `GOOGLE_TOKEN` | (optional) | Base64 token for OAuth sync |
+| `GOOGLE_CALENDAR_NAME` | "Berkeley Calendar" | Target calendar name (OAuth only) |
 
 ## Cron Schedule
 
-Current: `0 4,16 * * *` (8 AM and 8 PM Pacific in UTC)
+Both workflows: `0 4,16 * * *` (8 AM and 8 PM Pacific in UTC)
 
 - GitHub Actions uses UTC
 - 8 AM Pacific = 16:00 UTC (PST) / 15:00 UTC (PDT)
@@ -133,8 +176,23 @@ Current: `0 4,16 * * *` (8 AM and 8 PM Pacific in UTC)
    - Where the due date is stored (look for `<time>` elements)
    - Any new class names or data attributes
 
-## Repository
+## Repository Structure
 
-- GitHub: https://github.com/CoolKingGreat/gradescope-calendar-sync
-- Visibility: Private
-- Owner: CoolKingGreat
+```
+gradescope-calendar-sync/
+├── .github/workflows/
+│   ├── sync.yml              # OAuth sync (your calendar)
+│   └── generate-ical.yml     # iCal generation (shareable)
+├── docs/
+│   ├── index.html            # Landing page for subscribers
+│   └── gradescope.ics        # Generated iCal (auto-committed)
+├── sync_gradescope.py        # Gradescope + Google Calendar
+├── ical_generator.py         # iCal creation logic
+├── generate_ical.py          # iCal generation script
+├── setup_google_auth.py      # OAuth token setup
+├── requirements.txt          # Dependencies
+├── README.md                 # User-facing (iCal setup)
+├── ADVANCED_SETUP.md         # OAuth setup guide
+├── DEVELOPMENT.md            # This file
+└── WALKTHROUGH.md            # How the code works
+```

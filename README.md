@@ -1,125 +1,136 @@
-# Gradescope to Google Calendar Sync
+# Gradescope Calendar Sync
 
-Automatically sync your Gradescope assignments to Google Calendar using GitHub Actions.
+Automatically sync your Gradescope assignment deadlines to any calendar app.
 
-## Features
+## Quick Start (5 minutes)
 
-- Runs automatically every 2 hours (even when your laptop is off)
-- Prevents duplicate calendar events
-- Updates existing events when due dates change
-- Secure credential storage via GitHub Secrets
+### 1. Fork this repository
 
-## Setup Instructions
+Click the **Fork** button at the top right of this page.
 
-### 1. Set Up Google Calendar API
+### 2. Add your Gradescope credentials
 
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a new project (or select an existing one)
-3. Search for "Google Calendar API" and enable it
-4. Go to **APIs & Services > Credentials**
-5. Click **Create Credentials > OAuth client ID**
-6. Select **Desktop application** as the application type
-7. Download the JSON file and save it as `credentials.json` in this directory
-
-### 2. Generate Google OAuth Token
-
-Run the setup script locally (one-time only):
-
-```bash
-pip install -r requirements.txt
-python setup_google_auth.py
-```
-
-This will open a browser for Google authentication and create `token.json`.
-
-### 3. Encode Token for GitHub
-
-On macOS:
-```bash
-base64 -i token.json | pbcopy
-```
-
-On Linux:
-```bash
-base64 -w 0 token.json
-```
-
-Copy the output for the next step.
-
-### 4. Configure GitHub Secrets
-
-Go to your repository's **Settings > Secrets and variables > Actions** and add:
+Go to your fork's **Settings > Secrets and variables > Actions** and add:
 
 | Secret Name | Value |
 |-------------|-------|
-| `GRADESCOPE_EMAIL` | Your Gradescope email address |
+| `GRADESCOPE_EMAIL` | Your Gradescope email |
 | `GRADESCOPE_PASSWORD` | Your Gradescope password |
-| `GOOGLE_TOKEN` | The base64-encoded token from step 3 |
 
-### 5. Push to GitHub
+### 3. Enable GitHub Pages
 
-```bash
-git init
-git add .
-git commit -m "Initial commit: Gradescope calendar sync"
-git branch -M main
-git remote add origin git@github.com:YOUR_USERNAME/gradescope-calendar-sync.git
-git push -u origin main
+1. Go to **Settings > Pages**
+2. Under "Source", select **Deploy from a branch**
+3. Select the `main` branch and `/ (root)` folder
+4. Click **Save**
+
+### 4. Run the workflow
+
+1. Go to **Actions** tab
+2. Click **Generate iCal Feed**
+3. Click **Run workflow**
+
+### 5. Subscribe to your calendar
+
+After the workflow completes, your calendar feed will be available at:
+
+```
+https://YOUR-USERNAME.github.io/gradescope-calendar-sync/gradescope.ics
 ```
 
-### 6. Verify It Works
+**Subscribe in your calendar app:**
 
-1. Go to your repository on GitHub
-2. Click **Actions** tab
-3. Click **Sync Gradescope to Google Calendar**
-4. Click **Run workflow** to trigger a manual sync
-5. Check your Google Calendar for the assignments
+- **Google Calendar**: Settings > Add calendar > From URL
+- **Apple Calendar**: File > New Calendar Subscription
+- **Outlook**: Add calendar > Subscribe from web
 
-## Local Testing
+That's it! Your calendar will automatically update twice daily.
 
-To run the sync locally:
+---
 
-```bash
-export GRADESCOPE_EMAIL="your-email@example.com"
-export GRADESCOPE_PASSWORD="your-password"
-python sync_gradescope.py
+## How It Works
+
+```
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│  Gradescope │ --> │   GitHub    │ --> │  Your       │
+│  (scrapes)  │     │   Actions   │     │  Calendar   │
+└─────────────┘     └─────────────┘     └─────────────┘
+                    Runs 2x daily        Subscribes to
+                    Generates .ics       the feed URL
 ```
 
-## Troubleshooting
+1. GitHub Actions runs twice daily (8 AM and 8 PM Pacific)
+2. The workflow logs into Gradescope and fetches all assignments
+3. It generates an iCal file and commits it to your repo
+4. Your calendar app refreshes from the URL automatically
 
-### "No Google credentials found"
-Run `python setup_google_auth.py` to generate the token.
+## Features
 
-### "Missing Gradescope credentials"
-Make sure `GRADESCOPE_EMAIL` and `GRADESCOPE_PASSWORD` are set (either as environment variables locally or as GitHub Secrets).
+- **Auto-updates**: Syncs twice daily automatically
+- **Works everywhere**: Any calendar app that supports iCal subscriptions
+- **No duplicates**: Uses stable event IDs for clean updates
+- **Zero maintenance**: Runs on GitHub's free tier
 
-### GitHub Actions workflow not running
-- Check that secrets are configured correctly
-- Verify the workflow file is in `.github/workflows/`
-- Try triggering manually from the Actions tab
+## Customization
 
-### Token expired
-Google OAuth tokens can expire. If syncs start failing:
-1. Run `setup_google_auth.py` locally again
-2. Re-encode and update the `GOOGLE_TOKEN` secret
+### Change sync schedule
 
-## Schedule
-
-The sync runs automatically every 2 hours via GitHub Actions. You can modify the schedule in `.github/workflows/sync.yml`:
+Edit `.github/workflows/generate-ical.yml`:
 
 ```yaml
 schedule:
-  - cron: '0 */2 * * *'  # Every 2 hours
-  # - cron: '0 * * * *'  # Every hour
-  # - cron: '0 8,12,18 * * *'  # At 8am, 12pm, and 6pm
+  - cron: '0 4,16 * * *'  # Default: 8 AM and 8 PM Pacific
+  # - cron: '0 */6 * * *'  # Every 6 hours
+  # - cron: '0 12 * * *'   # Once daily at noon UTC
 ```
 
-## Security
+### Manual sync
 
-- All credentials are stored as encrypted GitHub Secrets
+Go to **Actions > Generate iCal Feed > Run workflow** anytime.
+
+## Advanced: Google Calendar OAuth Sync
+
+Want real-time sync with custom reminders? See [ADVANCED_SETUP.md](ADVANCED_SETUP.md) for OAuth-based Google Calendar integration.
+
+| Method | Setup Time | Features |
+|--------|------------|----------|
+| **iCal** (this guide) | 5 min | Subscribe URL, auto-refresh, works with any calendar |
+| **OAuth** ([advanced](ADVANCED_SETUP.md)) | 30 min | Direct Google Calendar sync, custom reminders, faster updates |
+
+## Troubleshooting
+
+### Calendar not updating
+
+- Trigger a manual workflow run from the Actions tab
+- Check that GitHub Pages is enabled and the URL is correct
+- Some calendar apps cache aggressively; try removing and re-adding the subscription
+
+### Workflow failing
+
+- Verify your `GRADESCOPE_EMAIL` and `GRADESCOPE_PASSWORD` secrets are correct
+- Check the workflow logs in the Actions tab for error details
+
+### Missing assignments
+
+- The sync only includes assignments with due dates
+- Assignments from courses where you're not enrolled won't appear
+
+## Privacy & Security
+
+- Your Gradescope credentials are stored as encrypted GitHub Secrets
 - Credentials are never logged or exposed in workflow runs
-- Use a private repository for additional security
+- Consider using a **private repository** if you don't want your assignment schedule to be public
+- The generated `.ics` file contains assignment names and due dates
 
-## Credits
+## Local Development
 
-- [gradescopecalendar](https://pypi.org/project/gradescopecalendar/) - Python package for Gradescope integration
+Test the iCal generation locally:
+
+```bash
+pip install -r requirements.txt
+export GRADESCOPE_EMAIL="your-email@example.com"
+export GRADESCOPE_PASSWORD="your-password"
+python generate_ical.py
+```
+
+The output will be saved to `docs/gradescope.ics`.
