@@ -47,3 +47,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Generated calendar output
+docs/gradescope.ics

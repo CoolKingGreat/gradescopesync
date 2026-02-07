@@ -4,13 +4,13 @@ Automatically sync your Gradescope assignment deadlines to any calendar app.
 
 ## Quick Start (5 minutes)
 
-### 1. Fork this repository
+### 1. Use this template
 
-Click the **Fork** button at the top right of this page.
+Click **Use this template** and create your own repository.
 
 ### 2. Add your Gradescope credentials
 
-Go to your fork's **Settings > Secrets and variables > Actions** and add:
+Go to your repository's **Settings > Secrets and variables > Actions** and add:
 
 | Secret Name | Value |
 |-------------|-------|
@@ -35,7 +35,7 @@ Go to your fork's **Settings > Secrets and variables > Actions** and add:
 After the workflow completes, your calendar feed will be available at:
 
 ```
-https://YOUR-USERNAME.github.io/gradescope-calendar-sync/gradescope.ics
+https://YOUR-USERNAME.github.io/YOUR-REPO/gradescope.ics
 ```
 
 **Subscribe in your calendar app:**
@@ -115,9 +115,12 @@ Want real-time sync with custom reminders? See [ADVANCED_SETUP.md](ADVANCED_SETU
 - The sync only includes assignments with due dates
 - Assignments from courses where you're not enrolled won't appear
 
-## Privacy & Security
+## Privacy, Ownership, and Security
 
-- Your Gradescope credentials are stored as encrypted GitHub Secrets
+- All workflows run in your repository and count against **your** GitHub Actions quota
+- Your Gradescope credentials are stored as encrypted GitHub Secrets in your repository
+- You control your own Pages URL and generated calendar feed
+
 - Credentials are never logged or exposed in workflow runs
 - Consider using a **private repository** if you don't want your assignment schedule to be public
 - The generated `.ics` file contains assignment names and due dates

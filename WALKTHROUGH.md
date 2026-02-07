@@ -633,19 +633,19 @@ def create_calendar(assignments):
 
 **Key insight**: The UID (Unique Identifier) lets calendar apps know when an event is being updated vs. when it's new. Format: `{course_id}-{assignment_id}@gradescope-sync`
 
-### The Fork Model
+### The Template Model
 
-Each user forks the repo and runs their own instance:
+Each user creates their own repository from the template and runs their own instance:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │  Original repo (template)                                       │
 └─────────────────────────────────────────────────────────────────┘
-                              │ fork
+                              │ use template
         ┌─────────────────────┼─────────────────────┐
         ▼                     ▼                     ▼
 ┌───────────────┐     ┌───────────────┐     ┌───────────────┐
-│ alice/fork    │     │ bob/fork      │     │ carol/fork    │
+│ alice/repo    │     │ bob/repo      │     │ carol/repo    │
 │ - her creds   │     │ - his creds   │     │ - her creds   │
 │ - her .ics    │     │ - his .ics    │     │ - her .ics    │
 └───────────────┘     └───────────────┘     └───────────────┘
@@ -664,7 +664,7 @@ Benefits:
 
 | Step | iCal (new) | OAuth (original) |
 |------|------------|------------------|
-| 1 | Fork repo | Fork repo |
+| 1 | Use template | Use template |
 | 2 | Add 2 secrets | Add 2 secrets |
 | 3 | Enable GitHub Pages | Create Google Cloud project |
 | 4 | Done! | Enable Calendar API |

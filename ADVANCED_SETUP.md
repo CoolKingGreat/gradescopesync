@@ -16,9 +16,9 @@ This guide is for users who want **real-time two-way sync** with Google Calendar
 
 ## Prerequisites
 
-- A GitHub account with a fork of this repository
+- A GitHub account with your own repository created from this template
 - A Google account
-- Access to [Google Cloud Console](https://console.cloud.google.com/)
+- Access to [Google Cloud Console](https://console.cloud.google.com/) (your own project)
 
 ## Setup Instructions
 
