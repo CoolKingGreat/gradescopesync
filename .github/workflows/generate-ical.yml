@@ -37,6 +37,6 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add docs/gradescope.ics
+          git add -f docs/gradescope.ics
           git diff --staged --quiet || git commit -m "Update iCal feed [automated]"
           git push
