@@ -1,0 +1,597 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Gradescope Calendar Sync//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Gradescope Assignments
+X-WR-TIMEZONE:America/Los_Angeles
+BEGIN:VEVENT
+SUMMARY:HW01 (Tools) - Setup - COMPSCI 61B
+DTSTART;TZID="UTC-08:00":20260123T235900
+DTEND;TZID="UTC-08:00":20260123T235900
+DTSTAMP:20260208T162613Z
+UID:1211464-7387828@gradescope-sync
+DESCRIPTION:Course: Computer Science 61B (Spring 2026)\nLink: https://www.
+ gradescope.com/courses/1211464/assignments/7387828/submissions/382416309
+URL:https://www.gradescope.com/courses/1211464/assignments/7387828/submiss
+ ions/382416309
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:HW02 (Coding) - Java Intro - COMPSCI 61B
+DTSTART;TZID="UTC-08:00":20260127T235900
+DTEND;TZID="UTC-08:00":20260127T235900
+DTSTAMP:20260208T162613Z
+UID:1211464-7509465@gradescope-sync
+DESCRIPTION:Course: Computer Science 61B (Spring 2026)\nLink: https://www.
+ gradescope.com/courses/1211464/assignments/7509465/submissions/382424999
+URL:https://www.gradescope.com/courses/1211464/assignments/7509465/submiss
+ ions/382424999
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Project 0 - Particle Simulator - COMPSCI 61B
+DTSTART;TZID="UTC-08:00":20260203T235900
+DTEND;TZID="UTC-08:00":20260203T235900
+DTSTAMP:20260208T162613Z
+UID:1211464-7544060@gradescope-sync
+DESCRIPTION:Course: Computer Science 61B (Spring 2026)\nLink: https://www.
+ gradescope.com/courses/1211464/assignments/7544060/submissions/385701817
+URL:https://www.gradescope.com/courses/1211464/assignments/7544060/submiss
+ ions/385701817
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Project 0 - Particle Simulator (Hardmode) - COMPSCI 61B
+DTSTART;TZID="UTC-08:00":20260203T235900
+DTEND;TZID="UTC-08:00":20260203T235900
+DTSTAMP:20260208T162613Z
+UID:1211464-7566342@gradescope-sync
+DESCRIPTION:Course: Computer Science 61B (Spring 2026)\nLink: https://www.
+ gradescope.com/courses/1211464/assignments/7566342
+URL:https://www.gradescope.com/courses/1211464/assignments/7566342
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:HW03 (Coding) - IntLists - COMPSCI 61B
+DTSTART;TZID="UTC-08:00":20260203T235900
+DTEND;TZID="UTC-08:00":20260203T235900
+DTSTAMP:20260208T162613Z
+UID:1211464-7575463@gradescope-sync
+DESCRIPTION:Course: Computer Science 61B (Spring 2026)\nLink: https://www.
+ gradescope.com/courses/1211464/assignments/7575463/submissions/385647985
+URL:https://www.gradescope.com/courses/1211464/assignments/7575463/submiss
+ ions/385647985
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Project 1 - LinkedListDeque - COMPSCI 61B
+DTSTART;TZID="UTC-08:00":20260210T235900
+DTEND;TZID="UTC-08:00":20260210T235900
+DTSTAMP:20260208T162613Z
+UID:1211464-7582132@gradescope-sync
+DESCRIPTION:Course: Computer Science 61B (Spring 2026)\nLink: https://www.
+ gradescope.com/courses/1211464/assignments/7582132
+URL:https://www.gradescope.com/courses/1211464/assignments/7582132
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:[Ungraded] Project 1 - LinkedListDeque Test Coverage - COMPSCI 61B
+DTSTART;TZID="UTC-08:00":20260210T235900
+DTEND;TZID="UTC-08:00":20260210T235900
+DTSTAMP:20260208T162613Z
+UID:1211464-7582993@gradescope-sync
+DESCRIPTION:Course: Computer Science 61B (Spring 2026)\nLink: https://www.
+ gradescope.com/courses/1211464/assignments/7582993
+URL:https://www.gradescope.com/courses/1211464/assignments/7582993
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Mini-Vitamin 0A - CS 70
+DTSTART;TZID="UTC-08:00":20260122T123000
+DTEND;TZID="UTC-08:00":20260122T123000
+DTSTAMP:20260208T162613Z
+UID:1226014-7492333@gradescope-sync
+DESCRIPTION:Course: Discrete Mathematics and Probability Theory (Spring 20
+ 26)\nLink: https://www.gradescope.com/courses/1226014/assignments/7492333/
+ submissions/382147149
+URL:https://www.gradescope.com/courses/1226014/assignments/7492333/submiss
+ ions/382147149
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Mini-Vitamin 0B - CS 70
+DTSTART;TZID="UTC-08:00":20260122T123000
+DTEND;TZID="UTC-08:00":20260122T123000
+DTSTAMP:20260208T162613Z
+UID:1226014-7492356@gradescope-sync
+DESCRIPTION:Course: Discrete Mathematics and Probability Theory (Spring 20
+ 26)\nLink: https://www.gradescope.com/courses/1226014/assignments/7492356/
+ submissions/382147744
+URL:https://www.gradescope.com/courses/1226014/assignments/7492356/submiss
+ ions/382147744
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Homework 0 - CS 70
+DTSTART;TZID="UTC-08:00":20260124T160000
+DTEND;TZID="UTC-08:00":20260124T160000
+DTSTAMP:20260208T162613Z
+UID:1226014-7507449@gradescope-sync
+DESCRIPTION:Course: Discrete Mathematics and Probability Theory (Spring 20
+ 26)\nLink: https://www.gradescope.com/courses/1226014/assignments/7507449/
+ submissions/382803186
+URL:https://www.gradescope.com/courses/1226014/assignments/7507449/submiss
+ ions/382803186
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Mini-Vitamin 1A - CS 70
+DTSTART;TZID="UTC-08:00":20260127T123000
+DTEND;TZID="UTC-08:00":20260127T123000
+DTSTAMP:20260208T162613Z
+UID:1226014-7528079@gradescope-sync
+DESCRIPTION:Course: Discrete Mathematics and Probability Theory (Spring 20
+ 26)\nLink: https://www.gradescope.com/courses/1226014/assignments/7528079/
+ submissions/383377754
+URL:https://www.gradescope.com/courses/1226014/assignments/7528079/submiss
+ ions/383377754
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Mini-Vitamin 1B - CS 70
+DTSTART;TZID="UTC-08:00":20260129T123000
+DTEND;TZID="UTC-08:00":20260129T123000
+DTSTAMP:20260208T162613Z
+UID:1226014-7528081@gradescope-sync
+DESCRIPTION:Course: Discrete Mathematics and Probability Theory (Spring 20
+ 26)\nLink: https://www.gradescope.com/courses/1226014/assignments/7528081/
+ submissions/384060708
+URL:https://www.gradescope.com/courses/1226014/assignments/7528081/submiss
+ ions/384060708
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Homework 0 Self-Grading - CS 70
+DTSTART;TZID="UTC-08:00":20260131T160000
+DTEND;TZID="UTC-08:00":20260131T160000
+DTSTAMP:20260208T162613Z
+UID:1226014-7546938@gradescope-sync
+DESCRIPTION:Course: Discrete Mathematics and Probability Theory (Spring 20
+ 26)\nLink: https://www.gradescope.com/courses/1226014/assignments/7546938/
+ submissions/384734884
+URL:https://www.gradescope.com/courses/1226014/assignments/7546938/submiss
+ ions/384734884
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Homework 1 - CS 70
+DTSTART;TZID="UTC-08:00":20260131T160000
+DTEND;TZID="UTC-08:00":20260131T160000
+DTSTAMP:20260208T162613Z
+UID:1226014-7552934@gradescope-sync
+DESCRIPTION:Course: Discrete Mathematics and Probability Theory (Spring 20
+ 26)\nLink: https://www.gradescope.com/courses/1226014/assignments/7552934/
+ submissions/384761759
+URL:https://www.gradescope.com/courses/1226014/assignments/7552934/submiss
+ ions/384761759
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Homework 1 Self-Grading - CS 70
+DTSTART;TZID="UTC-08:00":20260207T160000
+DTEND;TZID="UTC-08:00":20260207T160000
+DTSTAMP:20260208T162613Z
+UID:1226014-7553047@gradescope-sync
+DESCRIPTION:Course: Discrete Mathematics and Probability Theory (Spring 20
+ 26)\nLink: https://www.gradescope.com/courses/1226014/assignments/7553047/
+ submissions/387044263
+URL:https://www.gradescope.com/courses/1226014/assignments/7553047/submiss
+ ions/387044263
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Mini-Vitamin 2A - CS 70
+DTSTART;TZID="UTC-08:00":20260203T123000
+DTEND;TZID="UTC-08:00":20260203T123000
+DTSTAMP:20260208T162613Z
+UID:1226014-7588842@gradescope-sync
+DESCRIPTION:Course: Discrete Mathematics and Probability Theory (Spring 20
+ 26)\nLink: https://www.gradescope.com/courses/1226014/assignments/7588842/
+ submissions/385388349
+URL:https://www.gradescope.com/courses/1226014/assignments/7588842/submiss
+ ions/385388349
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Mini-Vitamin 2B - CS 70
+DTSTART;TZID="UTC-08:00":20260205T123000
+DTEND;TZID="UTC-08:00":20260205T123000
+DTSTAMP:20260208T162613Z
+UID:1226014-7588852@gradescope-sync
+DESCRIPTION:Course: Discrete Mathematics and Probability Theory (Spring 20
+ 26)\nLink: https://www.gradescope.com/courses/1226014/assignments/7588852/
+ submissions/386293565
+URL:https://www.gradescope.com/courses/1226014/assignments/7588852/submiss
+ ions/386293565
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Homework 2 - CS 70
+DTSTART;TZID="UTC-08:00":20260207T160000
+DTEND;TZID="UTC-08:00":20260207T160000
+DTSTAMP:20260208T162613Z
+UID:1226014-7590432@gradescope-sync
+DESCRIPTION:Course: Discrete Mathematics and Probability Theory (Spring 20
+ 26)\nLink: https://www.gradescope.com/courses/1226014/assignments/7590432/
+ submissions/387061772
+URL:https://www.gradescope.com/courses/1226014/assignments/7590432/submiss
+ ions/387061772
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Syllabus Quiz (Due Sun 25 at 11:59PM) - LS 22-LEC-1
+DTSTART;TZID="UTC-08:00":20260125T235900
+DTEND;TZID="UTC-08:00":20260125T235900
+DTSTAMP:20260208T162613Z
+UID:1231201-7490329@gradescope-sync
+DESCRIPTION:Course: Sense and Sensibility and Science (Spring 2026)\nLink:
+  https://www.gradescope.com/courses/1231201/assignments/7490329/submission
+ s/382945842
+URL:https://www.gradescope.com/courses/1231201/assignments/7490329/submiss
+ ions/382945842
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Living the Topic - Week 1 - LS 22-LEC-1
+DTSTART;TZID="UTC-08:00":20260125T235900
+DTEND;TZID="UTC-08:00":20260125T235900
+DTSTAMP:20260208T162613Z
+UID:1231201-7510711@gradescope-sync
+DESCRIPTION:Course: Sense and Sensibility and Science (Spring 2026)\nLink:
+  https://www.gradescope.com/courses/1231201/assignments/7510711/submission
+ s/382961452
+URL:https://www.gradescope.com/courses/1231201/assignments/7510711/submiss
+ ions/382961452
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Living the Topic / HW Question - Week 2 - LS 22-LEC-1
+DTSTART;TZID="UTC-08:00":20260201T235900
+DTEND;TZID="UTC-08:00":20260201T235900
+DTSTAMP:20260208T162613Z
+UID:1231201-7558682@gradescope-sync
+DESCRIPTION:Course: Sense and Sensibility and Science (Spring 2026)\nLink:
+  https://www.gradescope.com/courses/1231201/assignments/7558682/submission
+ s/384970516
+URL:https://www.gradescope.com/courses/1231201/assignments/7558682/submiss
+ ions/384970516
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Living the Topic - Week 3 - LS 22-LEC-1
+DTSTART;TZID="UTC-08:00":20260208T235900
+DTEND;TZID="UTC-08:00":20260208T235900
+DTSTAMP:20260208T162613Z
+UID:1231201-7579860@gradescope-sync
+DESCRIPTION:Course: Sense and Sensibility and Science (Spring 2026)\nLink:
+  https://www.gradescope.com/courses/1231201/assignments/7579860/submission
+ s/387108984
+URL:https://www.gradescope.com/courses/1231201/assignments/7579860/submiss
+ ions/387108984
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Starting-knowledge Survey - LS 22-LEC-1
+DTSTART;TZID="UTC-08:00":20260208T235900
+DTEND;TZID="UTC-08:00":20260208T235900
+DTSTAMP:20260208T162613Z
+UID:1231201-7613980@gradescope-sync
+DESCRIPTION:Course: Sense and Sensibility and Science (Spring 2026)\nLink:
+  https://www.gradescope.com/courses/1231201/assignments/7613980/submission
+ s/387108982
+URL:https://www.gradescope.com/courses/1231201/assignments/7613980/submiss
+ ions/387108982
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Homework 1 - Math 54
+DTSTART;TZID="UTC-08:00":20260126T210000
+DTEND;TZID="UTC-08:00":20260126T210000
+DTSTAMP:20260208T162613Z
+UID:1205448-7356882@gradescope-sync
+DESCRIPTION:Course: Linear Algebra and Differential Equations\nLink: https
+ ://www.gradescope.com/courses/1205448/assignments/7356882/submissions/3845
+ 97564
+URL:https://www.gradescope.com/courses/1205448/assignments/7356882/submiss
+ ions/384597564
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Homework 2 - Math 54
+DTSTART;TZID="UTC-08:00":20260202T210000
+DTEND;TZID="UTC-08:00":20260202T210000
+DTSTAMP:20260208T162613Z
+UID:1205448-7356883@gradescope-sync
+DESCRIPTION:Course: Linear Algebra and Differential Equations\nLink: https
+ ://www.gradescope.com/courses/1205448/assignments/7356883/submissions/3853
+ 06744
+URL:https://www.gradescope.com/courses/1205448/assignments/7356883/submiss
+ ions/385306744
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Homework 3 - Math 54
+DTSTART;TZID="UTC-08:00":20260209T210000
+DTEND;TZID="UTC-08:00":20260209T210000
+DTSTAMP:20260208T162613Z
+UID:1205448-7356884@gradescope-sync
+DESCRIPTION:Course: Linear Algebra and Differential Equations\nLink: https
+ ://www.gradescope.com/courses/1205448/assignments/7356884
+URL:https://www.gradescope.com/courses/1205448/assignments/7356884
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Homework 0 - ASTRON C10-LEC-001
+DTSTART;TZID="UTC-07:00":20250930T180000
+DTEND;TZID="UTC-07:00":20250930T180000
+DTSTAMP:20260208T162613Z
+UID:1097682-6575267@gradescope-sync
+DESCRIPTION:Course: Introduction to General Astronomy (Fall 2025)\nLink: h
+ ttps://www.gradescope.com/courses/1097682/assignments/6575267/submissions/
+ 343474888
+URL:https://www.gradescope.com/courses/1097682/assignments/6575267/submiss
+ ions/343474888
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Homework 1 - ASTRON C10-LEC-001
+DTSTART;TZID="UTC-07:00":20250905T180000
+DTEND;TZID="UTC-07:00":20250905T180000
+DTSTAMP:20260208T162613Z
+UID:1097682-6575321@gradescope-sync
+DESCRIPTION:Course: Introduction to General Astronomy (Fall 2025)\nLink: h
+ ttps://www.gradescope.com/courses/1097682/assignments/6575321/submissions/
+ 344561420
+URL:https://www.gradescope.com/courses/1097682/assignments/6575321/submiss
+ ions/344561420
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Homework 2 - ASTRON C10-LEC-001
+DTSTART;TZID="UTC-07:00":20250912T180000
+DTEND;TZID="UTC-07:00":20250912T180000
+DTSTAMP:20260208T162613Z
+UID:1097682-6575342@gradescope-sync
+DESCRIPTION:Course: Introduction to General Astronomy (Fall 2025)\nLink: h
+ ttps://www.gradescope.com/courses/1097682/assignments/6575342/submissions/
+ 346441657
+URL:https://www.gradescope.com/courses/1097682/assignments/6575342/submiss
+ ions/346441657
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Homework 3 - ASTRON C10-LEC-001
+DTSTART;TZID="UTC-07:00":20250919T180000
+DTEND;TZID="UTC-07:00":20250919T180000
+DTSTAMP:20260208T162613Z
+UID:1097682-6575370@gradescope-sync
+DESCRIPTION:Course: Introduction to General Astronomy (Fall 2025)\nLink: h
+ ttps://www.gradescope.com/courses/1097682/assignments/6575370/submissions/
+ 348960764
+URL:https://www.gradescope.com/courses/1097682/assignments/6575370/submiss
+ ions/348960764
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Homework 4 - ASTRON C10-LEC-001
+DTSTART;TZID="UTC-07:00":20250926T180000
+DTEND;TZID="UTC-07:00":20250926T180000
+DTSTAMP:20260208T162613Z
+UID:1097682-6575394@gradescope-sync
+DESCRIPTION:Course: Introduction to General Astronomy (Fall 2025)\nLink: h
+ ttps://www.gradescope.com/courses/1097682/assignments/6575394/submissions/
+ 351652381
+URL:https://www.gradescope.com/courses/1097682/assignments/6575394/submiss
+ ions/351652381
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Homework 5 - ASTRON C10-LEC-001
+DTSTART;TZID="UTC-07:00":20251003T180000
+DTEND;TZID="UTC-07:00":20251003T180000
+DTSTAMP:20260208T162613Z
+UID:1097682-6575396@gradescope-sync
+DESCRIPTION:Course: Introduction to General Astronomy (Fall 2025)\nLink: h
+ ttps://www.gradescope.com/courses/1097682/assignments/6575396/submissions/
+ 354245584
+URL:https://www.gradescope.com/courses/1097682/assignments/6575396/submiss
+ ions/354245584
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Homework 6 - ASTRON C10-LEC-001
+DTSTART;TZID="UTC-07:00":20251010T180000
+DTEND;TZID="UTC-07:00":20251010T180000
+DTSTAMP:20260208T162613Z
+UID:1097682-6575398@gradescope-sync
+DESCRIPTION:Course: Introduction to General Astronomy (Fall 2025)\nLink: h
+ ttps://www.gradescope.com/courses/1097682/assignments/6575398/submissions/
+ 356797440
+URL:https://www.gradescope.com/courses/1097682/assignments/6575398/submiss
+ ions/356797440
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Homework 7 - ASTRON C10-LEC-001
+DTSTART;TZID="UTC-07:00":20251017T180000
+DTEND;TZID="UTC-07:00":20251017T180000
+DTSTAMP:20260208T162613Z
+UID:1097682-6575421@gradescope-sync
+DESCRIPTION:Course: Introduction to General Astronomy (Fall 2025)\nLink: h
+ ttps://www.gradescope.com/courses/1097682/assignments/6575421/submissions/
+ 359221464
+URL:https://www.gradescope.com/courses/1097682/assignments/6575421/submiss
+ ions/359221464
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Lab Set 1 - ASTRON C10-LEC-001
+DTSTART;TZID="UTC-07:00":20251024T180000
+DTEND;TZID="UTC-07:00":20251024T180000
+DTSTAMP:20260208T162613Z
+UID:1097682-6575447@gradescope-sync
+DESCRIPTION:Course: Introduction to General Astronomy (Fall 2025)\nLink: h
+ ttps://www.gradescope.com/courses/1097682/assignments/6575447/submissions/
+ 362281300
+URL:https://www.gradescope.com/courses/1097682/assignments/6575447/submiss
+ ions/362281300
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Homework 8 - ASTRON C10-LEC-001
+DTSTART;TZID="UTC-07:00":20251031T180000
+DTEND;TZID="UTC-07:00":20251031T180000
+DTSTAMP:20260208T162613Z
+UID:1097682-6575449@gradescope-sync
+DESCRIPTION:Course: Introduction to General Astronomy (Fall 2025)\nLink: h
+ ttps://www.gradescope.com/courses/1097682/assignments/6575449/submissions/
+ 364821224
+URL:https://www.gradescope.com/courses/1097682/assignments/6575449/submiss
+ ions/364821224
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Homework 9 - ASTRON C10-LEC-001
+DTSTART;TZID="UTC-08:00":20251106T180000
+DTEND;TZID="UTC-08:00":20251106T180000
+DTSTAMP:20260208T162613Z
+UID:1097682-6575450@gradescope-sync
+DESCRIPTION:Course: Introduction to General Astronomy (Fall 2025)\nLink: h
+ ttps://www.gradescope.com/courses/1097682/assignments/6575450/submissions/
+ 366636276
+URL:https://www.gradescope.com/courses/1097682/assignments/6575450/submiss
+ ions/366636276
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Homework 10 - ASTRON C10-LEC-001
+DTSTART;TZID="UTC-08:00":20251117T180000
+DTEND;TZID="UTC-08:00":20251117T180000
+DTSTAMP:20260208T162613Z
+UID:1097682-6575452@gradescope-sync
+DESCRIPTION:Course: Introduction to General Astronomy (Fall 2025)\nLink: h
+ ttps://www.gradescope.com/courses/1097682/assignments/6575452/submissions/
+ 370397066
+URL:https://www.gradescope.com/courses/1097682/assignments/6575452/submiss
+ ions/370397066
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Lab Set 2 - ASTRON C10-LEC-001
+DTSTART;TZID="UTC-08:00":20251124T180000
+DTEND;TZID="UTC-08:00":20251124T180000
+DTSTAMP:20260208T162613Z
+UID:1097682-6575455@gradescope-sync
+DESCRIPTION:Course: Introduction to General Astronomy (Fall 2025)\nLink: h
+ ttps://www.gradescope.com/courses/1097682/assignments/6575455/submissions/
+ 372946591
+URL:https://www.gradescope.com/courses/1097682/assignments/6575455/submiss
+ ions/372946591
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Homework 11 - ASTRON C10-LEC-001
+DTSTART;TZID="UTC-08:00":20251205T180000
+DTEND;TZID="UTC-08:00":20251205T180000
+DTSTAMP:20260208T162613Z
+UID:1097682-6575457@gradescope-sync
+DESCRIPTION:Course: Introduction to General Astronomy (Fall 2025)\nLink: h
+ ttps://www.gradescope.com/courses/1097682/assignments/6575457/submissions/
+ 375763368
+URL:https://www.gradescope.com/courses/1097682/assignments/6575457/submiss
+ ions/375763368
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Vitamin 1 - CS 198
+DTSTART;TZID="UTC-07:00":20250923T235900
+DTEND;TZID="UTC-07:00":20250923T235900
+DTSTAMP:20260208T162613Z
+UID:1134351-6788557@gradescope-sync
+DESCRIPTION:Course: Full Stack Decal (FA25)\nLink: https://www.gradescope.
+ com/courses/1134351/assignments/6788557/submissions/349753230
+URL:https://www.gradescope.com/courses/1134351/assignments/6788557/submiss
+ ions/349753230
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Vitamin 2 - CS 198
+DTSTART;TZID="UTC-07:00":20250930T235900
+DTEND;TZID="UTC-07:00":20250930T235900
+DTSTAMP:20260208T162613Z
+UID:1134351-6788622@gradescope-sync
+DESCRIPTION:Course: Full Stack Decal (FA25)\nLink: https://www.gradescope.
+ com/courses/1134351/assignments/6788622/submissions/352414777
+URL:https://www.gradescope.com/courses/1134351/assignments/6788622/submiss
+ ions/352414777
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Vitamin 3 - CS 198
+DTSTART;TZID="UTC-07:00":20251007T235900
+DTEND;TZID="UTC-07:00":20251007T235900
+DTSTAMP:20260208T162613Z
+UID:1134351-6893609@gradescope-sync
+DESCRIPTION:Course: Full Stack Decal (FA25)\nLink: https://www.gradescope.
+ com/courses/1134351/assignments/6893609/submissions/355489069
+URL:https://www.gradescope.com/courses/1134351/assignments/6893609/submiss
+ ions/355489069
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Project 1 - CS 198
+DTSTART;TZID="UTC-07:00":20251014T235900
+DTEND;TZID="UTC-07:00":20251014T235900
+DTSTAMP:20260208T162613Z
+UID:1134351-6893613@gradescope-sync
+DESCRIPTION:Course: Full Stack Decal (FA25)\nLink: https://www.gradescope.
+ com/courses/1134351/assignments/6893613/submissions/357379450
+URL:https://www.gradescope.com/courses/1134351/assignments/6893613/submiss
+ ions/357379450
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Vitamin 4 - CS 198
+DTSTART;TZID="UTC-07:00":20251014T235900
+DTEND;TZID="UTC-07:00":20251014T235900
+DTSTAMP:20260208T162613Z
+UID:1134351-6960065@gradescope-sync
+DESCRIPTION:Course: Full Stack Decal (FA25)\nLink: https://www.gradescope.
+ com/courses/1134351/assignments/6960065/submissions/357446442
+URL:https://www.gradescope.com/courses/1134351/assignments/6960065/submiss
+ ions/357446442
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Vitamin 5 - CS 198
+DTSTART;TZID="UTC-07:00":20251021T235900
+DTEND;TZID="UTC-07:00":20251021T235900
+DTSTAMP:20260208T162613Z
+UID:1134351-7012262@gradescope-sync
+DESCRIPTION:Course: Full Stack Decal (FA25)\nLink: https://www.gradescope.
+ com/courses/1134351/assignments/7012262/submissions/360448691
+URL:https://www.gradescope.com/courses/1134351/assignments/7012262/submiss
+ ions/360448691
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Project 2 - CS 198
+DTSTART;TZID="UTC-08:00":20251111T235900
+DTEND;TZID="UTC-08:00":20251111T235900
+DTSTAMP:20260208T162613Z
+UID:1134351-7013220@gradescope-sync
+DESCRIPTION:Course: Full Stack Decal (FA25)\nLink: https://www.gradescope.
+ com/courses/1134351/assignments/7013220/submissions/369072664
+URL:https://www.gradescope.com/courses/1134351/assignments/7013220/submiss
+ ions/369072664
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Vitamin 6 - CS 198
+DTSTART;TZID="UTC-08:00":20251113T235900
+DTEND;TZID="UTC-08:00":20251113T235900
+DTSTAMP:20260208T162613Z
+UID:1134351-7098952@gradescope-sync
+DESCRIPTION:Course: Full Stack Decal (FA25)\nLink: https://www.gradescope.
+ com/courses/1134351/assignments/7098952/submissions/366199504
+URL:https://www.gradescope.com/courses/1134351/assignments/7098952/submiss
+ ions/366199504
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Vitamin 7 - CS 198
+DTSTART;TZID="UTC-08:00":20251106T235900
+DTEND;TZID="UTC-08:00":20251106T235900
+DTSTAMP:20260208T162613Z
+UID:1134351-7098967@gradescope-sync
+DESCRIPTION:Course: Full Stack Decal (FA25)\nLink: https://www.gradescope.
+ com/courses/1134351/assignments/7098967/submissions/366215678
+URL:https://www.gradescope.com/courses/1134351/assignments/7098967/submiss
+ ions/366215678
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Vitamin 8 - CS 198
+DTSTART;TZID="UTC-08:00":20251111T235900
+DTEND;TZID="UTC-08:00":20251111T235900
+DTSTAMP:20260208T162613Z
+UID:1134351-7099183@gradescope-sync
+DESCRIPTION:Course: Full Stack Decal (FA25)\nLink: https://www.gradescope.
+ com/courses/1134351/assignments/7099183/submissions/368290173
+URL:https://www.gradescope.com/courses/1134351/assignments/7099183/submiss
+ ions/368290173
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Vitamin 10 - CS 198
+DTSTART;TZID="UTC-08:00":20251202T235900
+DTEND;TZID="UTC-08:00":20251202T235900
+DTSTAMP:20260208T162613Z
+UID:1134351-7243781@gradescope-sync
+DESCRIPTION:Course: Full Stack Decal (FA25)\nLink: https://www.gradescope.
+ com/courses/1134351/assignments/7243781/submissions/374672433
+URL:https://www.gradescope.com/courses/1134351/assignments/7243781/submiss
+ ions/374672433
+END:VEVENT
+END:VCALENDAR
